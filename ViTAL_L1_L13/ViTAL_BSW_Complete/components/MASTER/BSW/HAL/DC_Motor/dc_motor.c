@@ -5,16 +5,16 @@
 
 static const char *TAG = "HAL DC MOTOR";
 
-/*******************************************************************************
- *  Function name    : DCMOT_vChangeSpeed
- *
- *  Description      : Change the DC Motor speed
- *
- *  List of arguments: u32DCMotorSpeed -> PWM duty cycle for speed
- *
- *  Return value     : -
- *
- ******************************************************************************/
+/*
+   Function name    : DCMOT_vChangeSpeed
+ 
+   Description      : Change the DC Motor speed
+ 
+   List of arguments: u32DCMotorSpeed -> PWM duty cycle for speed
+ 
+   Return value     : -
+ */
+
 void DCMOT_vChangeSpeed(uint32_t u32DCMotorSpeed)
 {
 	if (u32DCMotorSpeed == DC_MOTOR_STOP)
@@ -37,3 +37,5 @@ void DCMOT_vChangeSpeed(uint32_t u32DCMotorSpeed)
 		ESP_LOGI(TAG, "Invalid value");
 	}
 }
+
+

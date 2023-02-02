@@ -69,6 +69,7 @@ void vTask1000ms(void)
 
 void vTask2000ms(void)
 {
+	BUZZER_vChangeDutyCycle(uint32_t u32BuzzerDutyCycle);
 }
 
 void vTask5000ms(void)

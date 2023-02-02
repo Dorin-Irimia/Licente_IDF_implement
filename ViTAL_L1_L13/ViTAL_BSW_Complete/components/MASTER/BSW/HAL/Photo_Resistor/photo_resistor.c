@@ -38,3 +38,4 @@ void PHRES_vTaskCalculate(void)
 {
 	g_GET_DataStructure.u16PhotoRes = PHRES_u16Read();
 }
+
