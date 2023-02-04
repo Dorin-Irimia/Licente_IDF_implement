@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "ambient_light.h": "c",
+        "buzzer.h": "c",
+        "dc_motor.h": "c",
+        "gpio.h": "c",
+        "servo_motor.h": "c",
+        "temp_sensor.h": "c",
+        "rte.h": "c",
+        "global.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
