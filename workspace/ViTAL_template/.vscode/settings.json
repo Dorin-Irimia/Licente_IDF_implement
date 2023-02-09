@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "ambient_light.h": "c",
+        "buzzer.h": "c",
+        "dc_motor.h": "c",
+        "gpio.h": "c",
+        "climate_control_system.h": "c",
+        "servo_motor.h": "c",
+        "locking_system.h": "c",
+        "rte.h": "c",
+        "com.h": "c",
+        "shift_register.h": "c",
+        "headlights.h": "c",
+        "trunk.h": "c",
+        "horn.h": "c",
+        "wifi.h": "c",
+        "security.h": "c",
+        "proximity_sensor.h": "c",
+        "global.h": "c"
+    },
+    "idf.adapterTargetName": "esp32s2"
+}
