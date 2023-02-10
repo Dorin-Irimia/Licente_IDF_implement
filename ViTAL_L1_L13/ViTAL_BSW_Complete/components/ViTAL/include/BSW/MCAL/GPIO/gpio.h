@@ -12,6 +12,21 @@ void GPIO_vSetLevel(uint8_t u8PinNumber, uint32_t u32Level);
 
 int GPIO_iGetLevel(uint8_t u8PinNumber);
 
+/* COLORS SENSOR_HW */
+#define TCS230_S0_PIN 10
+#define TCS230_S0_MASK (1 << TCS230_S0_PIN)
+#define TCS230_S1_PIN 11
+#define TCS230_S1_MASK (1 << TCS230_S1_PIN)
+#define TCS230_S2_PIN 12
+#define TCS230_S2_MASK (1 << TCS230_S2_PIN)
+#define TCS230_S3_PIN 13
+#define TCS230_S3_MASK (1 << TCS230_S3_PIN)
+#define TCS230_OUTPUT_PIN 11
+#define TCS230_OUTPUT_MASK (1 << TCS230_OUTPUT_PIN)
+
+#define HC_SR04_ECHO_PIN 6
+#define HC_SR04_ECHO_PIN_MASK (1 << HC_SR04_ECHO_PIN)
+
 /* ULTRASONIC_SENSOR_HW */
 #define HC_SR04_TRIGGER_PIN 5
 #define HC_SR04_TRIGGER_PIN_MASK (1 << HC_SR04_TRIGGER_PIN)

@@ -20,6 +20,42 @@ static gpio_config_t sg_gpio_config;
  ******************************************************************************/
 void GPIO_vInit(void)
 {
+	/* COLORS SENSOR */
+	sg_gpio_config.pin_bit_mask = (uint32_t)TCS230_S0_MASK;
+	sg_gpio_config.mode = GPIO_MODE_OUTPUT;
+	sg_gpio_config.pull_up_en = GPIO_PULLUP_DISABLE;
+	sg_gpio_config.pull_down_en = GPIO_PULLDOWN_DISABLE;
+	sg_gpio_config.intr_type = GPIO_INTR_DISABLE;
+
+	ESP_ERROR_CHECK(gpio_config(&sg_gpio_config));
+	sg_gpio_config.pin_bit_mask = (uint32_t)TCS230_S1_MASK;
+	sg_gpio_config.mode = GPIO_MODE_OUTPUT;
+	sg_gpio_config.pull_up_en = GPIO_PULLUP_DISABLE;
+	sg_gpio_config.pull_down_en = GPIO_PULLDOWN_DISABLE;
+	sg_gpio_config.intr_type = GPIO_INTR_DISABLE;
+	ESP_ERROR_CHECK(gpio_config(&sg_gpio_config));
+
+	sg_gpio_config.pin_bit_mask = (uint32_t)TCS230_S2_MASK;
+	sg_gpio_config.mode = GPIO_MODE_OUTPUT;
+	sg_gpio_config.pull_up_en = GPIO_PULLUP_DISABLE;
+	sg_gpio_config.pull_down_en = GPIO_PULLDOWN_DISABLE;
+	sg_gpio_config.intr_type = GPIO_INTR_DISABLE;
+	ESP_ERROR_CHECK(gpio_config(&sg_gpio_config));
+
+	sg_gpio_config.pin_bit_mask = (uint32_t)TCS230_S3_MASK;
+	sg_gpio_config.mode = GPIO_MODE_OUTPUT;
+	sg_gpio_config.pull_up_en = GPIO_PULLUP_DISABLE;
+	sg_gpio_config.pull_down_en = GPIO_PULLDOWN_DISABLE;
+	sg_gpio_config.intr_type = GPIO_INTR_DISABLE;
+	ESP_ERROR_CHECK(gpio_config(&sg_gpio_config));
+	
+	sg_gpio_config.pin_bit_mask = (uint32_t)TCS230_OUTPUT_MASK;
+	sg_gpio_config.mode = GPIO_MODE_INPUT;
+	sg_gpio_config.pull_up_en = GPIO_PULLUP_DISABLE;
+	sg_gpio_config.pull_down_en = GPIO_PULLDOWN_DISABLE;
+	sg_gpio_config.intr_type = GPIO_INTR_DISABLE;
+	ESP_ERROR_CHECK(gpio_config(&sg_gpio_config));
+
 	/* ULTRASONIC_SENSOR_HW */
 	sg_gpio_config.pin_bit_mask = (uint32_t)HC_SR04_TRIGGER_PIN_MASK;
 	sg_gpio_config.mode = GPIO_MODE_OUTPUT;

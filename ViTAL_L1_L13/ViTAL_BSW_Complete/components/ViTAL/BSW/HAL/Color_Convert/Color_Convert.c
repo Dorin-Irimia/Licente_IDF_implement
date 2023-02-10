@@ -5,14 +5,21 @@ static const char *TAG = "HAL_COLOR_CONTROL";
 
 
 
-void COLOR_CONTROL_vReadColor(uint32_t c1,uint32_t c2)
+void COLOR_CONTROL_vInitColor(void)
 {
-    uint32_t val1=0, val2=0;
-
-
+    GPIO_vSetLevel(TCS230_S0_PIN,HIGH_LEVEL);
+    GPIO_vSetLevel(TCS230_S1_PIN,HIGH_LEVEL);
 }
 
-
-//daca e low astept sa se faca high
-//numar in us 
-//stochez valoarea
+uint16_t COLOR_CONTROL_vReadColor(void)
+{
+    GPIO_vSetLevel(TCS230_S0_PIN,LOW_LEVEL);
+    GPIO_vSetLevel(TCS230_S1_PIN,HIGH_LEVEL);
+    const uint8_t ValFreq = 0;  
+	PROX_vRequest();
+	while (GPIO_iGetLevel(TCS230_OUTPUT_PIN) == 1)
+            {
+                ValFreq++;
+            }
+	return (uint8_t) (ValFreq);
+}

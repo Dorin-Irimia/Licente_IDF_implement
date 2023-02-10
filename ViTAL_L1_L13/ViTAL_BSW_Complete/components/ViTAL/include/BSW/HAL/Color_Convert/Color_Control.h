@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-void COLOR_CONTROL_vReadColor(uint32_t c1,uint32_t c2);
-
+void COLOR_CONTROL_vInitColor(void);
+uint16_t COLOR_CONTROL_vReadColor(void);
 
 #endif
