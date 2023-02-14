@@ -25,6 +25,7 @@ typedef struct
 	bool bButtonSecurity;
 	bool bButtonDoorLock;
 	uint8_t u8UserTemperature;
+	uint8_t u8UserServo;
 } COM_POST_struct;
 
 void COM_vProcessGetRequest(void);

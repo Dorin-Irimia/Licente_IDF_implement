@@ -21,7 +21,7 @@ COM_POST_struct g_POST_DataStructure =
 { .bButtonFan = false, .bButtonTrunk = false, .bButtonHeadlights = false,
 		.bButtonAmbientalLights = false, .bButtonFindMyCar = false,
 		.bButtonHonk = false, .bButtonSecurity = false, .bButtonDoorLock = false,
-		.u8UserTemperature = 27 };
+		.u8UserTemperature = 27, .u8UserServo = 0 };
 
 /*******************************************************************************
  *  Function name    : COM_vProcessGetRequest
@@ -162,6 +162,12 @@ void COM_vProcessPostRequest(void)
 					* 10;
 			g_POST_DataStructure.u8UserTemperature += g_cPOSTBuffer[11] - '0';
 		}
+
+		else if (strstr(g_cPOSTBuffer, "user-set-servo=") != NULL)
+		{
+			g_POST_DataStructure.u8UserServo = (G_cPOSTBuffer[10]);
+		}
+
 
 		else
 		{
