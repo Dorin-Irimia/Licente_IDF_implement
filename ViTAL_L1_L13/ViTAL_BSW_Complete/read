@@ -1,0 +1,19 @@
+/******************* Convert a string to a integer **************/
+
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char v[20];
+int a;
+
+int main()
+{
+    strcpy(v,"123");
+   a = atoi(v);
+    printf("%d",a);
+
+    return 0;
+}
+*/
