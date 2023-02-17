@@ -27,6 +27,45 @@ static const char *TAG = "HAL SERVO MOTOR";
  *******************************************************************************/
 void SERVO_vChangeAngle(uint32_t u32ServoAngle)
 {
+   
+  static uint32_t u32OldAngle = 1500;
+ static  uint32_t servoSpeed = 50;
+
+  uint32_t potVal; //valoarea citita de la web
+  uint32_t potStop = 0 ;   
+  uint32_t servoStart;
+
+    
+double InputStart = 0;      // 0 is first value at the first range
+double InputStop = 180;      // 10 is last value at the first range
+
+double OutputStart = 0;     // 0 is first value at the second range
+double OutputStop = 65000;    // 100 is a last value at the second range
+
+  potVal = ( potVal - InputStart ) / ( InputStop - InputStart ) * ( OutputStop - OutputStart ) + OutputStart;  
+
+ if(potVal > potStop) 
+ {
+      int32_t potSpeed = potStop - potVal;
+     servoStart = servoStop + (servoSpeed + potSpeed);
+     PWM_vSetDutyCycle(SERVO_MOTOR_PWM_CHANNEL, servoStart);
+ }
+    else if ( potVal < potStop)
+        {
+             int32_t potSpeed = potStop - potVal;
+            servoStart = servoStop - (servoSpeed - potSpeed);
+           PWM_vSetDutyCycle(SERVO_MOTOR_PWM_CHANNEL, servoStart);
+        }
+
+        else 
+        PWM_vSetDutyCycle(SERVO_MOTOR_PWM_CHANNEL, u32OldAngle);
+
+        potStop = potVal;
+        servoStart = 0;
+ 
+   
+ 
+   /*
     // For compatibility reasons, rotation will be used as angle
     // Initialize static variable to retain the old value given to the angle
     static uint32_t u32OldAngle = SERVOMOTOR_STOP_DC;
@@ -56,4 +95,5 @@ void SERVO_vChangeAngle(uint32_t u32ServoAngle)
 
     // Store the current rotation given
     u32OldAngle = u32ServoAngle;
+    */
 }
