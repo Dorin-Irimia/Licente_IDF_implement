@@ -15,11 +15,15 @@ uint16_t COLOR_CONTROL_vReadColor(void)
 {
     GPIO_vSetLevel(TCS230_S0_PIN,LOW_LEVEL);
     GPIO_vSetLevel(TCS230_S1_PIN,HIGH_LEVEL);
-    const uint8_t ValFreq = 0;  
-	PROX_vRequest();
-	while (GPIO_iGetLevel(TCS230_OUTPUT_PIN) == 1)
-            {
-                ValFreq++;
-            }
-	return (uint8_t) (ValFreq);
+    
+    while (GPIO_iGetLevel(TCS230_OUTPUT_PIN) == 0)
+		;
+
+	int64_t echo_start = esp_timer_get_time();
+
+	while (GPIO_iGetLevel(TCS230_OUTPUT_PIN))
+		;
+
+
+	return (int64_t) (esp_timer_get_time());
 }

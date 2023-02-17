@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "servo_motor.h": "c"
-    }
+    },
+    "cmake.configureOnOpen": false
 }
