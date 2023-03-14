@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> ViTAL </title>
+	
+	<style>
+		* {
+            padding: 0;
+			font-family: Arial, Helvetica, sans-serif;
+			color: #4B4B46;
+		}
+        
+		html, body {
+			margin: 0;
+			height: 100vh;
+			width: 100%;
+			background-color: rgb(92, 90, 90);
+			font-size: 15px;
+		}
+        
+		.header {
+            width: 100%;
+			height: 5vh;
+			background-color: rgb(240, 230,20);
+			text-align: center;
+		}
+		
+		.header-content {
+			color: #4B4B46;
+			padding-top: 0.2vh;
+			width: 100%;
+		}
+		
+		.header-content h2 {
+		
+			font-size: 20px;
+		}
+		
+		.grid-container-main {
+			color: #4B4B46;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			text-align: center;
+			height: 80vh;
+			width:100%;
+			font-size: 15px;
+		}
+		
+		.grid-container-left {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+		}
+
+		
+
+		
+		.grid-container-right {
+			display: grid;
+			grid-template-columns: 1fr 1fr ;
+			grid-template-rows:  1fr 1fr 1fr 1fr 1fr 1fr;
+		}
+		
+        
+        .temp-form-container {
+			margin: 1vh 0.5vw;
+			grid-column: 1 / span 2;
+			border-radius: 5px;
+			padding: 10px 0;
+			background-color:  rgb(134, 166, 226);
+			font-size: 15px;
+		}
+		
+		.temp-form {
+			color: #4B4B46;
+			font-size: 15px;
+			font-weight: bold;
+		}
+		
+		#user-temperature{
+			height: 20px;
+            width: 150px;
+            text-align: center;
+		}
+		
+		#temp-submit{
+			width: 80px;
+			padding: 14px 0;
+			color: #4B4B46;
+			font-size: 15px;
+			font-weight: bold;
+			margin-top: 0.5vh;
+		}
+		
+		.form-item {
+			margin: 5%;
+		}
+		
+		.buttonSubmit {
+			height: 80px;
+			width: 80px;
+			border-radius: 20%;
+			background-color: rgb(100, 15, 0);
+			color: #ffffff;
+			font-size: 15px;
+			font-weight: bold;
+			border: none;
+		}
+		
+		.status-container {
+			height: 100px;
+			width: 150px;
+			background-color: rgb(0, 230, 172);
+			color: #4B4B46;
+			border-radius: 2%;
+			margin: 2% auto;
+		}
+		
+		.status-container p{
+			padding: 15%;
+			font-weight: bold;
+		}
+		
+		.buttonSubmit:hover {
+			width: 86px;
+			height: 86px;
+		}
+			
+		@media only screen and (max-width: 600px) {
+            h2 {
+                font-size: 13px;
+            }
+            
+            h1 {
+                font-size: 23px;
+            }
+            
+            .buttonSubmit {
+                font-size: 12px;
+                height:86px;
+                width:86px;
+            }
+            
+            .status-container {
+                height: 86px;
+                width: 86px;
+                font-size: 12px;
+            }
+		}
+	</style>
+</head>
+
+<body>
+	<div class= "header">
+		<div class="header-content">
+			<h2> Arm control </h2>
+		</div>
+	</div>
+	
+	<div class= "grid-container-main">
+		<div class="grid-container-left">
+			
+			<div class="grid-item">
+				<div class="form-item"> 
+					<form id="buttonFormS1_LEFT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS1_LEFT" name="button" value="S1_LEFT">S1_LEFT</button>
+					</form>
+				</div>
+			</div>
+			
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS1_RIGHT" method="post">
+						
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS1_RIGHT"name="button" value="S1_RIGHT">S1_RIGHT</button>
+					</form>
+				</div>
+			</div>
+            
+            <div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS2_LEFT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS2_LEFT" name="button" value="S2_LEFT">S2_LEFT</button>
+					</form>
+				</div>
+			</div> 
+			
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS2_RIGHT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS2_RIGHT" name="button" value="S2_RIGHT">S2_RIGHT</button>
+					</form>
+				</div>
+			</div>
+            
+            <div class="grid-item">
+				<div class="form-item">
+					<form id="buttonS3_LEFT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS3_LEFT" name="button" value="S3_LEFT">S3_LEFT</button>
+					</form>
+				</div>	
+			</div>
+			
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS3_RIGHT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS3_RIGHT" name="button" value="S3_RIGHT">S3_RIGHT</button>
+					</form>
+				</div>
+			</div>
+			
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS4_LEFT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS4_LEFT" name="button" value="S4_LEFT">S4_LEFT</button>
+					</form>
+				</div>
+			</div>
+			
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS4_RIGHT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS4_RIGHT" name="button" value="S4_RIGHT">S4_RIGHT</button>
+					</form>
+				</div>
+			</div>  
+
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS5_LEFT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS5_LEFT" name="button" value="S5_LEFT">S5_LEFT</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS5_RIGHT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS5_RIGHT" name="button" value="S5_RIGHT">S5_RIGHT</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS6_LEFT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS6_LEFT" name="button" value="S6_LEFT">S6_LEFT</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="grid-item">
+				<div class="form-item">
+					<form id="buttonFormS6_RIGHT" method="post">
+						<button class="buttonSubmit" type="submit" id="buttonSubmitS6_RIGHT" name="button" value="S6_RIGHT">S6_RIGHT</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+			<div class="grid-container-right">
+
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormSave_red" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitSave_red" name="button" value="Save_red">Save_red</button>
+						</form>
+					</div>
+				</div>
+	
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormSave_blue" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitSave_blue" name="button" value="Save_blue">Save_blue</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormClear_red" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitClear_red" name="button" value="Clear_red">Clear_red</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormClear_blue" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitClear_blue" name="button" value="Clear_blue">Clear_blue</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormRun" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitRun" name="button" value="Run">Run</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormStop" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitStop" name="button" value="Stop">Stop</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormRun_Red" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitRun_Red" name="button" value="Run_Red">Run_Red</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormRun_Blue" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitRun_Blue" name="button" value="Run_Blue">Run_Blue</button>
+						</form>
+					</div>
+				</div>
+
+				
+				<div class="grid-item">
+					<div class="status-container">
+						<p id="temperature-level"> Temperature </p>
+					</div>
+				</div>
+				
+				<div class="grid-item">
+					<div class="status-container">
+						<p id="humidity-level"> Humidity </p>
+					</div>
+				</div>
+				
+				<div class="grid-item">
+					<div class="status-container">
+						<p id="temperature-level"> Temperature </p>
+					</div>
+				</div>
+				
+				<div class="grid-item">
+					<div class="status-container">
+						<p id="humidity-level"> Humidity </p>
+					</div>
+				</div>
+				
+			
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormS6_RIGHT" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitS6_RIGHT" name="button" value="S6_RIGHT">CLEAR</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormS6_RIGHT" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitS6_RIGHT" name="button" value="S6_RIGHT">LINE</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormS6_RIGHT" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitS6_RIGHT" name="button" value="S6_RIGHT">CLEAR</button>
+						</form>
+					</div>
+				</div>
+				<div class="grid-item">
+					<div class="form-item">
+						<form id="buttonFormS6_RIGHT" method="post">
+							<button class="buttonSubmit" type="submit" id="buttonSubmitS6_RIGHT" name="button" value="S6_RIGHT">LINE</button>
+						</form>
+					</div>
+				</div>
+			
+			</div>
+		
+		
+		
+            
+            <div class = "temp-form-container">
+				<h2> Information Display </h2>
+				<form class="temp-form" method="post">
+					<label for="user-temperature">Enter your temperature threshold:</label><br>
+					<input type="number" id="user-temperature" name="user-temp" min="15" max="30" required><br>
+					<input id="temp-submit" type="submit" value="Apply">
+                </form>
+			</div>
+            
+            <div class="grid-item">
+				<div class="status-container">
+					<p id="temperature-level"> Temperature </p>
+				</div>
+			</div>
+            
+            <div class="grid-item">
+				<div class="status-container">
+					<p id="humidity-level"> Humidity </p>
+				</div>
+			</div>
+			
+			<div class="grid-item">
+				<div class="status-container">
+					<p id="heat-index"> Real feel </p>
+				</div>
+			</div>
+            
+            <div class="grid-item">
+				<div class="status-container">
+					<p id="photo-R-level"> Photo-R level </p>
+				</div>
+			</div>
+            
+            <div class="grid-item">
+				<div class="status-container">
+					<p id="locked-unlocked-status"> Locked </p>
+				</div>
+			</div>
+            
+            <div class="grid-item">
+				<div class="status-container">
+					<p id="driver-seat-status"> Driver seat<br>unoccupied  </p>
+				</div>	
+			</div>
+		
+	</div>
+	
+	<script>
+        /******************** POST functions ********************/
+        
+		/********** Servo move **********/
+		document.getElementById('buttonSubmitS1_LEFT').addEventListener('submit', buttonEventS1_LEFT);
+		document.getElementById('buttonFormS1_RIGHT').addEventListener('submit', buttonEventS1_RIGHT);
+		document.getElementById('buttonFormS2_LEFT').addEventListener('submit', buttonEventS2_LEFT);
+		document.getElementById('buttonFormS2_RIGHT').addEventListener('submit', buttonEventS2_RIGHT);
+		document.getElementById('buttonFormS3_LEFT').addEventListener('submit', buttonEventS3_LEFT);
+		document.getElementById('buttonFormS3_RIGHT').addEventListener('submit', buttonEventS3_RIGHT);
+
+		document.getElementById('buttonFormS4_LEFT').addEventListener('submit', buttonEventS4_LEFT);
+		document.getElementById('buttonFormS4_RIGHT').addEventListener('submit', buttonEventS4_RIGHT);
+		document.getElementById('buttonFormS5_LEFT').addEventListener('submit', buttonEventS5_LEFT);
+		document.getElementById('buttonFormS5_RIGHT').addEventListener('submit', buttonEventS5_RIGHT);
+		document.getElementById('buttonFormS6_LEFT').addEventListener('submit', buttonEventS6_LEFT);
+		document.getElementById('buttonFormS6_RIGHT').addEventListener('submit', buttonEventS6_RIGHT);
+
+		document.getElementById('buttonFormSave_red').addEventListener('submit', buttonEventSave_red);
+		document.getElementById('buttonFormSave_blue').addEventListener('submit', buttonEventSave_blue);
+		document.getElementById('buttonFormCleare_red').addEventListener('submit', buttonEventClear_red);
+		document.getElementById('buttonFormCleare_blue').addEventListener('submit', buttonEventClear_blue);
+
+		document.getElementById('buttonFormRun').addEventListener('submit', buttonEventRun);
+		document.getElementById('buttonFormStop').addEventListener('submit', buttonEventStop);
+
+		document.getElementById('buttonFormRun_Red').addEventListener('submit', buttonEventRun_Red);
+		document.getElementById('buttonFormRun_Blue').addEventListener('submit', buttonEventRun_Blue);
+
+		if (localStorage.getItem("valueHLights") == null) localStorage.setItem("valueHLights", "Head Lights On");
+        document.getElementById('buttonSubmitHLights').innerHTML = localStorage.getItem("valueHLights");
+        document.getElementById('buttonSubmitHLights').value = localStorage.getItem("valueHLights");
+
+		document.getElementById('buttonFormHLights').addEventListener('submit', buttonEventHLights);
+		if (localStorage.getItem("valueHLights") == null) localStorage.setItem("valueHLights", "Head Lights On");
+        document.getElementById('buttonSubmitHLights').innerHTML = localStorage.getItem("valueHLights");
+        document.getElementById('buttonSubmitHLights').value = localStorage.getItem("valueHLights");
+
+		document.getElementById('buttonFormHLights').addEventListener('submit', buttonEventHLights);
+		if (localStorage.getItem("valueHLights") == null) localStorage.setItem("valueHLights", "Head Lights On");
+        document.getElementById('buttonSubmitHLights').innerHTML = localStorage.getItem("valueHLights");
+        document.getElementById('buttonSubmitHLights').value = localStorage.getItem("valueHLights");
+
+		document.getElementById('buttonFormHLights').addEventListener('submit', buttonEventHLights);
+		if (localStorage.getItem("valueHLights") == null) localStorage.setItem("valueHLights", "Head Lights On");
+        document.getElementById('buttonSubmitHLights').innerHTML = localStorage.getItem("valueHLights");
+        document.getElementById('buttonSubmitHLights').value = localStorage.getItem("valueHLights");
+		document.getElementById('buttonFormHLights').addEventListener('submit', buttonEventHLights);
+		if (localStorage.getItem("valueHLights") == null) localStorage.setItem("valueHLights", "Head Lights On");
+        document.getElementById('buttonSubmitHLights').innerHTML = localStorage.getItem("valueHLights");
+        document.getElementById('buttonSubmitHLights').value = localStorage.getItem("valueHLights");
+
+		document.getElementById('buttonFormHLights').addEventListener('submit', buttonEventHLights);
+		if (localStorage.getItem("valueHLights") == null) localStorage.setItem("valueHLights", "Head Lights On");
+        document.getElementById('buttonSubmitHLights').innerHTML = localStorage.getItem("valueHLights");
+        document.getElementById('buttonSubmitHLights').value = localStorage.getItem("valueHLights");
+		
+		document.getElementById('buttonFormHLights').addEventListener('submit', buttonEventHLights);
+		if (localStorage.getItem("valueHLights") == null) localStorage.setItem("valueHLights", "Head Lights On");
+        document.getElementById('buttonSubmitHLights').innerHTML = localStorage.getItem("valueHLights");
+        document.getElementById('buttonSubmitHLights').value = localStorage.getItem("valueHLights");
+
+        
+    
+        /********** HEAD LIGHTS **********/
+        document.getElementById('buttonFormHLights').addEventListener('submit', buttonEventHLights);
+		if (localStorage.getItem("valueHLights") == null) localStorage.setItem("valueHLights", "Head Lights On");
+        document.getElementById('buttonSubmitHLights').innerHTML = localStorage.getItem("valueHLights");
+        document.getElementById('buttonSubmitHLights').value = localStorage.getItem("valueHLights");
+		function buttonEventHLights() {
+			if (localStorage.getItem("valueHLights") === "Head Lights On") localStorage.setItem("valueHLights", "Head Lights Off");
+            else localStorage.setItem("valueHLights", "Head Lights On");
+		}
+        
+        /********** AMBIENTAL LIGHTS **********/
+        document.getElementById('buttonFormALights').addEventListener('submit', buttonEventALights);
+		if (localStorage.getItem("valueALights") == null) localStorage.setItem("valueALights", "Ambiental Lights On");
+        document.getElementById('buttonSubmitALights').innerHTML = localStorage.getItem("valueALights");
+        document.getElementById('buttonSubmitALights').value = localStorage.getItem("valueALights");
+		function buttonEventALights() {
+			if (localStorage.getItem("valueALights") === "Ambiental Lights On") localStorage.setItem("valueALights", "Ambiental Lights Off");
+            else localStorage.setItem("valueALights", "Ambiental Lights On");
+		}
+        
+        /********** LIGHTS **********/
+        document.getElementById('buttonFormSecurity').addEventListener('submit', buttonEventSecurity);
+		if (localStorage.getItem("valueSecurity") == null) localStorage.setItem("valueSecurity", "Security On");
+        document.getElementById('buttonSubmitSecurity').innerHTML = localStorage.getItem("valueSecurity");
+        document.getElementById('buttonSubmitSecurity').value = localStorage.getItem("valueSecurity");
+		function buttonEventSecurity() {
+			if (localStorage.getItem("valueSecurity") === "Security On") localStorage.setItem("valueSecurity", "Security Off");
+            else localStorage.setItem("valueSecurity", "Security On");
+		}
+        
+        /********** DOOR **********/
+        document.getElementById('buttonFormDoor').addEventListener('submit', buttonEventDoor);
+		if (localStorage.getItem("valueDoor") == null) localStorage.setItem("valueDoor", "Unlock Door");
+        document.getElementById('buttonSubmitDoor').innerHTML = localStorage.getItem("valueDoor");
+        document.getElementById('buttonSubmitDoor').value = localStorage.getItem("valueDoor");
+		function buttonEventDoor() {
+			if (localStorage.getItem("valueDoor") === "Unlock Door") localStorage.setItem("valueDoor", "Lock Door");
+            else localStorage.setItem("valueDoor", "Unlock Door");
+		}
+        
+        /******************** GET functions ********************/
+        let DataValue = ["", "", "", "", "", ""];
+        if (localStorage.getItem("DataValue0") == null) localStorage.setItem("DataValue0", DataValue[0]);
+        if (localStorage.getItem("DataValue1") == null) localStorage.setItem("DataValue1", DataValue[1]);
+        if (localStorage.getItem("DataValue2") == null) localStorage.setItem("DataValue2", DataValue[2]);
+        if (localStorage.getItem("DataValue3") == null) localStorage.setItem("DataValue3", DataValue[3]);
+        if (localStorage.getItem("DataValue4") == null) localStorage.setItem("DataValue4", DataValue[4]);
+        if (localStorage.getItem("DataValue5") == null) localStorage.setItem("DataValue5", DataValue[5]);
+        
+        document.getElementById("temperature-level").innerHTML = "Temperature" + "<br>" + localStorage.getItem("DataValue0") + "&degC";
+        document.getElementById("humidity-level").innerHTML = "Humidity" + "<br>" + localStorage.getItem("DataValue1") + "%";
+        document.getElementById("heat-index").innerHTML = "Real feel" + "<br>" + localStorage.getItem("DataValue2") + "&degC";
+        document.getElementById("photo-R-level").innerHTML = "Photo-R level" + "<br>" + localStorage.getItem("DataValue3");
+        document.getElementById("locked-unlocked-status").innerHTML = localStorage.getItem("DataValue4");
+        document.getElementById("driver-seat-status").innerHTML = "Driver seat" + "<br>" + localStorage.getItem("DataValue5");
+        
+        function updateData() {
+            let request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        DataValue = this.responseText.split('\n');
+                        localStorage.setItem("DataValue0", DataValue[0]);
+                        localStorage.setItem("DataValue1", DataValue[1]);
+                        localStorage.setItem("DataValue2", DataValue[2]);
+                        localStorage.setItem("DataValue3", DataValue[3]);
+                        localStorage.setItem("DataValue4", DataValue[4]);
+                        localStorage.setItem("DataValue5", DataValue[5]);
+                    }
+                };
+            request.open('GET', '/data.txt', true);
+            request.send();
+        }
+        
+        function displayData() {
+            document.getElementById("temperature-level").innerHTML = "Temperature" + "<br>" + localStorage.getItem("DataValue0") + "&degC";
+            document.getElementById("humidity-level").innerHTML = "Humidity" + "<br>" + localStorage.getItem("DataValue1") + "%";
+            document.getElementById("heat-index").innerHTML = "Real feel" + "<br>" + localStorage.getItem("DataValue2") + "&degC";
+            document.getElementById("photo-R-level").innerHTML = "Photo-R level" + "<br>" + localStorage.getItem("DataValue3");
+            document.getElementById("locked-unlocked-status").innerHTML = localStorage.getItem("DataValue4");
+            document.getElementById("driver-seat-status").innerHTML = "Driver seat" + "<br>" + localStorage.getItem("DataValue5");
+        }
+        
+        setInterval(updateData, 1000);
+        setInterval(displayData, 0);
+    </script>
+</body>
+</html>

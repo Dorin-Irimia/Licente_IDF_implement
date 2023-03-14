@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "servo_motor.h": "c",
+        "nvs_flash.h": "c",
+        "color_change.h": "c",
+        "write_movement.h": "c",
+        "scheduler.h": "c",
+        "gpio.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
