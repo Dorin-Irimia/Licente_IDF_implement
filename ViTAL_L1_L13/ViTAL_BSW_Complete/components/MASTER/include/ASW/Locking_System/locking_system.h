@@ -1,0 +1,7 @@
+
+#ifndef COMPONENTS_VITAL_ASW_LOCKING_SYSTEM_H
+#define COMPONENTS_VITAL_ASW_LOCKING_SYSTEM_H
+
+#include "global.h"
+
+#endif

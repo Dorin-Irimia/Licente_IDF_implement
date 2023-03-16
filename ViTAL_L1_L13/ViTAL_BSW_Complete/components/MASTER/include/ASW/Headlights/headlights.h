@@ -1,0 +1,7 @@
+
+#ifndef COMPONENTS_VITAL_ASW_HEADLIGHTS_H
+#define COMPONENTS_VITAL_ASW_HEADLIGHTS_H
+
+#include "global.h"
+
+#endif
