@@ -32,7 +32,7 @@ void Run_Movement(void)
                         g_POST_DataStructure.bButtonRedExe = true;
                     else if(Run_struct.u16BLUE_COLOR < Run_struct.u16RED_COLOR) && (Run_struct.u16BLUE_COLOR < Run_struct.u16GREEN_COLOR))
                         g_POST_DataStructure.bButtonBlueExe = true;
-                    else
+                
                         // asteapta comanda
              }
              else
@@ -42,7 +42,7 @@ void Run_Movement(void)
              }
              
         }
-        else
+
     }
 
 } 
