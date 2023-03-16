@@ -12,6 +12,7 @@ COMPONENT_SRCDIRS += 	BSW/MCAL/ADC \
 						BSW/HAL/Color_Change\
 						BSW/HAL/Com \
 						BSW/HAL/DC_Motor \
+						BSW/HAL/Line_Read \
 						BSW/HAL/Photo_Resistor \
 						BSW/HAL/Proximity_Sensor \
 						BSW/HAL/Servo_Motor \
@@ -26,8 +27,10 @@ COMPONENT_SRCDIRS += 	BSW/MCAL/ADC \
 						ASW/Headlights \
 						ASW/Horn \
 						ASW/Locking_System \
+						ASW/Run_Movements \
 						ASW/Security \
                         ASW/Trunk \
+						ASW/Write_Movements \
 						 \
 						SRVL/SCHEDULER \
 						
