@@ -16,15 +16,16 @@
 #include "BSW/MCAL/PWM/pwm.h"
 #include "BSW/MCAL/WIFI/wifi.h"
 
-#include "BSW/HAL/Com/com.h"
-#include "BSW/HAL/Photo_Resistor/photo_resistor.h"
-#include "BSW/HAL/Temp_Sensor/temp_sensor.h"
-#include "BSW/HAL/DC_Motor/dc_motor.h"
-#include "BSW/HAL/Servo_Motor/servo_motor.h"
 #include "BSW/HAL/Buzzer/buzzer.h"
-#include "BSW/HAL/Proximity_Sensor/proximity_sensor.h"
-#include "BSW/HAL/Shift_Register/shift_register.h"
 #include "BSW/HAL/Color_Change/Color_Change.h"
+#include "BSW/HAL/Com/com.h"
+#include "BSW/HAL/DC_Motor/dc_motor.h"
+#include "BSW/HAL/Line_Read/line_read.h"
+#include "BSW/HAL/Photo_Resistor/photo_resistor.h"
+#include "BSW/HAL/Proximity_Sensor/proximity_sensor.h"
+#include "BSW/HAL/Servo_Motor/servo_motor.h"
+#include "BSW/HAL/Shift_Register/shift_register.h"
+#include "BSW/HAL/Temp_Sensor/temp_sensor.h"
 
 #include "RTE/rte.h"
 
@@ -33,10 +34,10 @@
 #include "ASW/Headlights/headlights.h"
 #include "ASW/Horn/horn.h"
 #include "ASW/Locking_System/locking_system.h"
+#include "ASW/Run_Movements/run_movements.h"
 #include "ASW/Security/security.h"
 #include "ASW/Trunk/trunk.h"
-#include "ASW/Run_Movement/run_movements.h"
-#include "ASW/Write_Movement/write_movement.h"
+#include "ASW/Write_Movements/write_movements.h"
 
 #include "nvs_flash.h"
 /**
@@ -69,34 +70,24 @@ void SYSTEM_vInit(void)
 }
 
 
+void vTask50ms(void)
+{
+	LS_vLineRead(); 	//citeste linia 
+	Run_Movement();		//activeaza toate functiile pentru miscare
+
+}
 
 void vTask100ms(void)
 {
 	
-	COM_vTaskProcessServer();
-	vASW_Trunk();
-	
-/*
-	static uint8_t counter = 0;
-	static uint32_t u32Position = SERVOMOTOR_STOP_DC_1;
-	counter++;
-	if (counter == 1)
-	 	u32Position  = SERVOMOTOR_CW_DC_1;
-//	if (counter == 3)	 
-//		u32Position  = SERVOMOTOR_CCW_DC_1;
-	if (counter >= 3)//5
-		counter = 0 ;
-	SERVO_vChangeAngle (u32Position);
-*/
+	COM_vTaskProcessServer();	//Primeste comenzile de la telefon
+	PROX_u16Read();				//Citeste detectia unui obiect
 }
 
 void vTask200ms(void)
 {
-	SERVO_vChangeAngle();
-	//autorun();
-	// PROX_u16Read();
-	// Read_Colors();
-	
+	SERVO_vChangeAngle();		//Miscarea servo motoarelor dupa citirea comenzii de la server
+	autorun();					//Executa miscarea servo motoarelor dupa ce a fost detectat un obiect si o culoare a acestuia 	
 }
 
 void vTask500ms(void)
@@ -154,7 +145,10 @@ void SYSTEM_vTaskScheduler(void)
 
 	while (1)
 	{
-		
+		if (u16TickCount % TASK_50MS == 0)
+		{
+			vTask50ms();
+		}
 
 		if (u16TickCount % TASK_100MS == 0)
 		{

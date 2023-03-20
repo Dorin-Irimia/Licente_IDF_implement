@@ -92,3 +92,23 @@ void SHIFTREG_vOutput8Bits(uint16_t u16Data)
 }
 
 
+/*
+		how to work
+
+		serial uc paralel pin
+
+		8 output pins 
+
+			for data signal = 0 0 0 0 0 0 0 1  output 1 = 1 
+			clock signal 	= 101010101010101
+		2 - led front for daily light  - 
+		2 - led back for daily light
+		2 - led front for hige view
+		4 - led for signal 
+		2 - led for brake 
+		1 - led for alert
+		
+		1				1				1				1					1				1					1						
+	Fdailylight		Bdailylight		higelight		brakelight			signalleft		signalright			alarmlight
+
+*/

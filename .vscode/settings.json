@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "servo_motor.h": "c",
+        "dc_motor.h": "c",
+        "photo_resistor.h": "c",
+        "temp_sensor.h": "c",
+        "proximity_sensor.h": "c",
+        "shift_register.h": "c",
+        "rte.h": "c"
+    }
+}

@@ -14,3 +14,16 @@
 #include "RTE/rte.h"
 
 static const char *TAG = "ASW AL";
+
+
+void vASW_Honk ()
+{   
+     if(RTE_bGET_Amb_Lights_status())
+    {
+        
+    }
+    else
+    {
+
+    }
+}
